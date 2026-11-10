@@ -105,7 +105,8 @@
     @media (max-width: 760px) { .nav { display: none; } }
 
     /* ---------- hero ---------- */
-    .hero { padding-block: clamp(3rem, 8vw, 6.5rem) var(--space-16); }
+    .hero { padding-block: clamp(1.5rem, 4vw, 3rem) var(--space-16); }
+    .hero__eyebrow { display: block; margin-bottom: var(--space-6); font-size: clamp(1rem, 0.8rem + 0.8vw, 1.375rem); letter-spacing: 0.12em; }
     .hero__title { font-size: var(--fs-xxl); max-width: 14ch; }
     .hero__title span { color: var(--c-accent); }
     .hero__lead { margin-top: var(--space-6); max-width: 38rem; font-size: var(--fs-l); line-height: 1.5; color: var(--c-muted); }
@@ -227,7 +228,7 @@
   <main id="main">
     <section class="hero" id="top">
       <div class="container">
-        <p class="eyebrow" style="--i: 0">Фриланс · сайты и боты</p>
+        <p class="eyebrow hero__eyebrow" style="--i: 0">Фриланс · сайты и боты</p>
         <h1 class="hero__title" style="--i: 1">Сайты и чат-боты для <span>малого бизнеса</span></h1>
         <p class="hero__lead" style="--i: 2">Делаю лендинги, сайты-визитки и ботов записи для ВКонтакте и Telegram. Без конструкторов: страницы быстро грузятся, удобны с телефона и приводят заявки, а не просто висят в интернете.</p>
         <div class="hero__actions" style="--i: 3">
