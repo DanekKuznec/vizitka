@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Даниил — сайты и чат-боты для малого бизнеса</title>
+  <meta name="description" content="Делаю лендинги, сайты-визитки и ботов записи для ВКонтакте и Telegram. Быстрые, удобные с телефона, без конструкторов.">
+  <meta name="theme-color" content="#121212">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Даниил — сайты и чат-боты для малого бизнеса">
+  <meta property="og:description" content="Лендинги, сайты-визитки и боты записи для ВКонтакте и Telegram.">
+  <meta property="og:url" content="https://danekkuznec.github.io/vizitka/">
+  <meta property="og:image" content="https://danekkuznec.github.io/vizitka/media/karate-top.webp">
+  <meta property="og:locale" content="ru_RU">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121212'/%3E%3Cpath d='M18 46V18h12c10 0 16 5 16 14s-6 14-16 14z' fill='none' stroke='%23ff5b1f' stroke-width='6' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --c-bg: #f4f2ee;
+      --c-surface: #ffffff;
+      --c-ink: #121212;
+      --c-muted: #62605b;
+      --c-line: #e1ddd5;
+      --c-accent: #ff5b1f;
+      --c-accent-ink: #ffffff;
+      --c-dark: #121212;
+      --c-dark-2: #1d1d1c;
+      --c-dark-ink: #f4f2ee;
+      --c-dark-muted: #a9a6a0;
+
+      --f-display: "Unbounded", "Arial Black", system-ui, sans-serif;
+      --f-body: "Onest", "Segoe UI", Roboto, system-ui, sans-serif;
+
+      --fs-xs: 0.8125rem;
+      --fs-s: 0.9375rem;
+      --fs-m: 1.0625rem;
+      --fs-l: 1.3125rem;
+      --fs-xl: clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem);
+      --fs-xxl: clamp(2.5rem, 1.2rem + 5.2vw, 5.25rem);
+
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-24: 6rem;
+
+      --radius-s: 10px;
+      --radius-l: 22px;
+      --container: 74rem;
+      --gutter: clamp(1rem, 4vw, 2.5rem);
+      --shadow: 0 1px 0 var(--c-line), 0 30px 60px -40px rgba(18, 18, 18, 0.45);
+      color-scheme: light;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+    body {
+      margin: 0; font-family: var(--f-body); font-size: var(--fs-m); line-height: 1.55;
+      color: var(--c-ink); background: var(--c-bg); -webkit-font-smoothing: antialiased;
+    }
+    img, video, svg { display: block; max-width: 100%; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--c-accent); outline-offset: 3px; border-radius: 4px; }
+    h1, h2, h3 { margin: 0; font-family: var(--f-display); font-weight: 700; line-height: 1.08; letter-spacing: -0.01em; }
+    h2 { font-size: var(--fs-xl); }
+    h3 { font-size: var(--fs-l); font-weight: 500; }
+    p { margin: 0; }
+    .container { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
+    .skip { position: absolute; left: -999px; }
+    .skip:focus { left: var(--space-4); top: var(--space-4); z-index: 100; background: var(--c-surface); padding: var(--space-2) var(--space-4); }
+
+    .eyebrow { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-accent); }
+    .section { padding-block: var(--space-24); }
+    .section__head { display: grid; gap: var(--space-4); max-width: 44rem; margin-bottom: var(--space-12); }
+    .section__lead { color: var(--c-muted); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+      min-height: 3.25rem; padding: 0 var(--space-6); border-radius: 999px; border: 2px solid transparent;
+      font-weight: 700; text-decoration: none; cursor: pointer; transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn svg { width: 1.25rem; height: 1.25rem; flex: none; }
+    .btn--accent { background: var(--c-accent); color: var(--c-accent-ink); }
+    .btn--accent:hover { background: #e94a10; }
+    .btn--line { border-color: currentColor; }
+    .btn--line:hover { background: var(--c-ink); color: var(--c-bg); border-color: var(--c-ink); }
+
+    /* ---------- header ---------- */
+    .header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--c-bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+    .header.is-scrolled { border-bottom-color: var(--c-line); }
+    .header__row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); min-height: 4.25rem; }
+    .logo { display: flex; align-items: center; gap: var(--space-3); text-decoration: none; font-weight: 700; }
+    .logo__mark { width: 2.25rem; height: 2.25rem; flex: none; }
+    .nav { display: flex; gap: var(--space-6); font-size: var(--fs-s); font-weight: 600; }
+    .nav a { text-decoration: none; color: var(--c-muted); transition: color 0.2s; }
+    .nav a:hover { color: var(--c-ink); }
+    .header .btn { min-height: 2.75rem; padding-inline: var(--space-4); font-size: var(--fs-s); }
+    @media (max-width: 760px) { .nav { display: none; } }
+
+    /* ---------- hero ---------- */
+    .hero { padding-block: clamp(3rem, 8vw, 6.5rem) var(--space-16); }
+    .hero__title { font-size: var(--fs-xxl); max-width: 14ch; }
+    .hero__title span { color: var(--c-accent); }
+    .hero__lead { margin-top: var(--space-6); max-width: 38rem; font-size: var(--fs-l); line-height: 1.5; color: var(--c-muted); }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-8); }
+    .hero__points { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-12) 0 0; padding: 0; list-style: none; }
+    .hero__points li { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); border: 1px solid var(--c-line); border-radius: 999px; background: var(--c-surface); font-size: var(--fs-s); font-weight: 600; }
+    .hero__points li::before { content: ""; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--c-accent); }
+
+    /* ---------- works ---------- */
+    .works { display: grid; gap: var(--space-16); }
+    .work { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; }
+    .work:nth-child(even) { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+    .work:nth-child(even) .work__media { order: 2; }
+    @media (max-width: 900px) { .work, .work:nth-child(even) { grid-template-columns: 1fr; } .work:nth-child(even) .work__media { order: 0; } }
+
+    .browser { border-radius: var(--radius-l); overflow: hidden; background: var(--c-surface); box-shadow: var(--shadow); border: 1px solid var(--c-line); }
+    .browser__bar { display: flex; align-items: center; gap: var(--space-2); height: 2.5rem; padding: 0 var(--space-4); border-bottom: 1px solid var(--c-line); }
+    .browser__bar i { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--c-line); }
+    .browser__url { margin-left: var(--space-3); font-size: var(--fs-xs); color: var(--c-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .browser__view { position: relative; aspect-ratio: 16 / 10.5; overflow: hidden; }
+    .browser__view img { width: 100%; height: auto; transform: translateY(0); transition: transform var(--scroll-time, 6s) cubic-bezier(.45,.05,.4,1); will-change: transform; }
+    @media (hover: hover) {
+      .work__media:hover .browser__view img, .work__media:focus-within .browser__view img { transform: translateY(var(--shift, 0)); }
+    }
+    @media (hover: none) { .browser__view { overflow-y: auto; -webkit-overflow-scrolling: touch; } }
+    .browser__hint {
+      position: absolute; right: var(--space-4); bottom: var(--space-4); padding: var(--space-2) var(--space-3);
+      border-radius: 999px; background: rgba(18, 18, 18, 0.78); color: #fff; font-size: var(--fs-xs); font-weight: 600;
+      pointer-events: none; transition: opacity 0.3s;
+    }
+    .work__media:hover .browser__hint { opacity: 0; }
+    .hint-touch { display: none; }
+    @media (hover: none) { .hint-hover { display: none; } .hint-touch { display: inline; } }
+
+    .phone-wrap { display: grid; place-items: center; padding: var(--space-8); border-radius: var(--radius-l); background: var(--c-dark); }
+    .phone { width: min(17rem, 70vw); aspect-ratio: 360 / 844; border-radius: 2.25rem; padding: 0.6rem; background: #000; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), inset 0 0 0 2px #2b2b2b; }
+    .phone video { width: 100%; height: 100%; object-fit: cover; border-radius: 1.75rem; background: #fff; }
+
+    .work__body { display: grid; gap: var(--space-4); align-content: start; }
+    .tag { justify-self: start; padding: 0.25rem var(--space-3); border-radius: 999px; background: var(--c-ink); color: var(--c-bg); font-size: var(--fs-xs); font-weight: 600; }
+    .work__title { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); font-weight: 700; }
+    .work__text { color: var(--c-muted); }
+    .work__list { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+    .work__list li { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); gap: var(--space-2); }
+    .work__list li::before { content: ""; width: 0.55rem; height: 0.55rem; margin-top: 0.55em; border-radius: 2px; background: var(--c-accent); rotate: 45deg; }
+    .work__links { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }
+    .work__links .btn { min-height: 2.75rem; font-size: var(--fs-s); padding-inline: var(--space-4); }
+
+    /* ---------- services ---------- */
+    .services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
+    @media (max-width: 900px) { .services { grid-template-columns: 1fr; } }
+    .service { display: grid; gap: var(--space-4); align-content: start; padding: var(--space-8); border-radius: var(--radius-l); background: var(--c-surface); box-shadow: var(--shadow); transition: transform 0.25s; }
+    .service:hover { transform: translateY(-4px); }
+    .service--dark { background: var(--c-dark); color: var(--c-dark-ink); }
+    .service--dark .service__text, .service--dark .service__list { color: var(--c-dark-muted); }
+    .service__icon { width: 3rem; height: 3rem; border-radius: 14px; display: grid; place-items: center; background: var(--c-accent); color: #fff; }
+    .service__icon svg { width: 1.5rem; height: 1.5rem; }
+    .service__text { color: var(--c-muted); }
+    .service__list { display: grid; gap: 0.35rem; margin: 0; padding-left: 1.1rem; color: var(--c-muted); font-size: var(--fs-s); }
+    .services-foot { margin-top: var(--space-6); color: var(--c-muted); font-size: var(--fs-s); }
+
+    /* ---------- process ---------- */
+    .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-4); margin: 0; padding: 0; list-style: none; counter-reset: step; }
+    @media (max-width: 900px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+    .step { display: grid; gap: var(--space-2); padding-top: var(--space-6); border-top: 2px solid var(--c-ink); }
+    .step::before { counter-increment: step; content: "0" counter(step); font-family: var(--f-display); font-size: 2rem; font-weight: 700; color: var(--c-accent); line-height: 1; margin-bottom: var(--space-2); }
+    .step p { color: var(--c-muted); font-size: var(--fs-s); }
+
+    /* ---------- contact ---------- */
+    .contact { background: var(--c-dark); color: var(--c-dark-ink); border-radius: var(--radius-l); padding: clamp(2rem, 6vw, 4.5rem); display: grid; gap: var(--space-8); }
+    .contact h2 { font-size: clamp(2rem, 1.2rem + 3.4vw, 3.75rem); max-width: 16ch; }
+    .contact h2 span { color: var(--c-accent); }
+    .contact__lead { color: var(--c-dark-muted); max-width: 36rem; font-size: var(--fs-l); }
+    .contact__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .btn--tg { background: #2481cc; color: #fff; }
+    .btn--tg:hover { background: #1f72b5; }
+    .btn--vk { background: #0b5ed7; color: #fff; }
+    .btn--vk:hover { background: #0a51ba; }
+    .contact .btn--line { color: var(--c-dark-ink); }
+    .contact .btn--line:hover { background: var(--c-dark-ink); color: var(--c-dark); border-color: var(--c-dark-ink); }
+
+    .footer { padding-block: var(--space-8) var(--space-12); font-size: var(--fs-s); color: var(--c-muted); }
+    .footer__row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); }
+
+    /* ---------- motion ---------- */
+    .js [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity 0.7s cubic-bezier(.2,.8,.2,1), transform 0.7s cubic-bezier(.2,.8,.2,1); transition-delay: calc(var(--i, 0) * 80ms); }
+    .js [data-reveal].is-in { opacity: 1; transform: none; }
+    .hero > .container > * { animation: rise 0.8s cubic-bezier(.2,.8,.2,1) backwards; animation-delay: calc(var(--i, 0) * 90ms); }
+    @keyframes rise { from { opacity: 0; transform: translateY(20px); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+      .hero > .container > * { animation: none; }
+      .browser__view img, .service { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">К содержимому</a>
+
+  <header class="header">
+    <div class="container header__row">
+      <a class="logo" href="#top" aria-label="Даниил, наверх">
+        <svg class="logo__mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#121212"/><path d="M18 46V18h12c10 0 16 5 16 14s-6 14-16 14z" fill="none" stroke="#ff5b1f" stroke-width="6" stroke-linejoin="round"/></svg>
+        Даниил
+      </a>
+      <nav class="nav" aria-label="Разделы">
+        <a href="#works">Работы</a>
+        <a href="#services">Услуги</a>
+        <a href="#process">Как работаю</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <a class="btn btn--accent" href="#contact">Написать</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container">
+        <p class="eyebrow" style="--i: 0">Фриланс · сайты и боты</p>
+        <h1 class="hero__title" style="--i: 1">Сайты и чат-боты для <span>малого бизнеса</span></h1>
+        <p class="hero__lead" style="--i: 2">Делаю лендинги, сайты-визитки и ботов записи для ВКонтакте и Telegram. Без конструкторов: страницы быстро грузятся, удобны с телефона и приводят заявки, а не просто висят в интернете.</p>
+        <div class="hero__actions" style="--i: 3">
+          <a class="btn btn--accent" href="#works">Смотреть работы</a>
+          <a class="btn btn--line" href="#contact">Обсудить задачу</a>
+        </div>
+        <ul class="hero__points" style="--i: 4">
+          <li>Адаптивно под телефон</li>
+          <li>Запись и заявки онлайн</li>
+          <li>Сайт и бот в одной связке</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="works" style="padding-top: var(--space-8)">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <p class="eyebrow">Работы</p>
+          <h2>Что уже сделано</h2>
+          <p class="section__lead">Демо-проекты для вымышленных заведений: всё работает по-настоящему — их можно открыть и потрогать. Наведите на сайт, чтобы прокрутить его.</p>
+        </div>
+
+        <div class="works">
+          <article class="work" data-reveal>
+            <div class="work__media">
+              <div class="browser">
+                <div class="browser__bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser__url">danekkuznec.github.io/tezy</span></div>
+                <div class="browser__view" tabindex="0" aria-label="Скриншот сайта клуба каратэ, листается">
+                  <img src="media/karate-full.webp" alt="Сайт клуба кёкусинкай «Тэцу» целиком" loading="lazy" decoding="async">
+                  <span class="browser__hint" aria-hidden="true"><span class="hint-hover">Наведите — сайт прокрутится</span><span class="hint-touch">Листайте внутри окна</span></span>
+                </div>
+              </div>
+            </div>
+            <div class="work__body">
+              <span class="tag">Лендинг</span>
+              <h3 class="work__title">Клуб кёкусинкай «Тэцу»</h3>
+              <p class="work__text">Сайт спортивной секции, который отвечает на вопросы родителей и сразу записывает на пробное занятие.</p>
+              <ul class="work__list">
+                <li>Подбор группы по возрасту ребёнка с ценой и расписанием</li>
+                <li>Запись на ближайшие тренировки — время считается из расписания</li>
+                <li>Видео и галерея тренировок, интерактивные пояса и словарик</li>
+                <li>Кнопки записи через бота в Telegram и ВКонтакте</li>
+              </ul>
+              <div class="work__links">
+                <a class="btn btn--accent" href="https://danekkuznec.github.io/tezy/" target="_blank" rel="noopener">Открыть сайт</a>
+                <a class="btn btn--line" href="https://github.com/DanekKuznec/tezy" target="_blank" rel="noopener">Код на GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="work" data-reveal>
+            <div class="work__media">
+              <div class="browser">
+                <div class="browser__bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser__url">danekkuznec.github.io/coffee-test12g</span></div>
+                <div class="browser__view" tabindex="0" aria-label="Скриншот сайта кофейни, листается">
+                  <img src="media/coffee-full.webp" alt="Сайт кофейни «12 граммов» целиком" loading="lazy" decoding="async">
+                  <span class="browser__hint" aria-hidden="true"><span class="hint-hover">Наведите — сайт прокрутится</span><span class="hint-touch">Листайте внутри окна</span></span>
+                </div>
+              </div>
+            </div>
+            <div class="work__body">
+              <span class="tag">Сайт-визитка с каталогом</span>
+              <h3 class="work__title">Кофейня «12 граммов»</h3>
+              <p class="work__text">Сайт кофейни, через который продаётся зерно домой с самовывозом.</p>
+              <ul class="work__list">
+                <li>Меню и каталог зерна с выбором веса и помола</li>
+                <li>Корзина и заказ к нужному времени самовывоза</li>
+                <li>Подбор кофе за три вопроса для тех, кто не разбирается</li>
+                <li>Часы работы с пометкой «открыто / закрыто» прямо сейчас</li>
+              </ul>
+              <div class="work__links">
+                <a class="btn btn--accent" href="https://danekkuznec.github.io/coffee-test12g/" target="_blank" rel="noopener">Открыть сайт</a>
+                <a class="btn btn--line" href="https://github.com/DanekKuznec/coffee-test12g" target="_blank" rel="noopener">Код на GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="work" data-reveal>
+            <div class="work__media">
+              <div class="phone-wrap">
+                <div class="phone">
+                  <video id="bot-video" src="media/bot.mp4" poster="media/bot-poster.webp" muted loop playsinline preload="none" aria-label="Запись экрана: клиент записывается на стрижку через бота ВКонтакте"></video>
+                </div>
+              </div>
+            </div>
+            <div class="work__body">
+              <span class="tag">Чат-бот</span>
+              <h3 class="work__title">Бот записи в барбершоп</h3>
+              <p class="work__text">Бот для ВКонтакте и Telegram, который записывает клиентов сам — администратору остаётся только стричь.</p>
+              <ul class="work__list">
+                <li>Запись кнопками: услуга, мастер, день и свободное время</li>
+                <li>Общее расписание для обеих соцсетей — двойных записей не бывает</li>
+                <li>Напоминание клиенту за день и за 2 часа</li>
+                <li>Отмена записи кнопкой и уведомления администратору</li>
+              </ul>
+              <div class="work__links">
+                <a class="btn btn--line" href="https://github.com/DanekKuznec/bot-barber" target="_blank" rel="noopener">Код на GitHub</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services" style="padding-top: 0">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <p class="eyebrow">Услуги</p>
+          <h2>С чем могу помочь</h2>
+        </div>
+        <ul class="services">
+          <li class="service" data-reveal>
+            <span class="service__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h5"/></svg></span>
+            <h3>Лендинг или сайт-визитка</h3>
+            <p class="service__text">Одностраничный сайт, который рассказывает о бизнесе и собирает заявки.</p>
+            <ul class="service__list">
+              <li>Дизайн под ваш бизнес, а не шаблон</li>
+              <li>Форма заявки, кнопки в мессенджеры</li>
+              <li>Удобно с телефона, быстро грузится</li>
+              <li>Помогу выложить в интернет</li>
+            </ul>
+          </li>
+          <li class="service service--dark" data-reveal>
+            <span class="service__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg></span>
+            <h3>Бот записи для ВК и Telegram</h3>
+            <p class="service__text">Клиенты записываются сами в любое время, вы получаете уведомления.</p>
+            <ul class="service__list">
+              <li>Услуги, мастера, расписание</li>
+              <li>Напоминания и отмена кнопкой</li>
+              <li>Одна база записей на обе соцсети</li>
+              <li>Работает на вашем компьютере или сервере</li>
+            </ul>
+          </li>
+          <li class="service" data-reveal>
+            <span class="service__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span>
+            <h3>Сайт и бот вместе</h3>
+            <p class="service__text">Сайт приводит людей, бот записывает и напоминает. Всё в одном стиле.</p>
+            <ul class="service__list">
+              <li>Кнопки записи с сайта прямо в бота</li>
+              <li>Общее расписание и цены</li>
+              <li>Меньше пропущенных клиентов</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="services-foot" data-reveal>Срок и цену называю после короткого разговора: зависит от того, сколько разделов и функций нужно.</p>
+      </div>
+    </section>
+
+    <section class="section" id="process" style="padding-top: 0">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <p class="eyebrow">Как работаю</p>
+          <h2>Четыре шага до запуска</h2>
+        </div>
+        <ol class="steps">
+          <li class="step" data-reveal><h3>Обсуждаем</h3><p>Рассказываете о бизнесе и задаче. Уточню, что должно быть на сайте или в боте, и назову срок и цену.</p></li>
+          <li class="step" data-reveal><h3>Показываю первый вариант</h3><p>Собираю рабочую версию, которую можно открыть на телефоне, а не картинку.</p></li>
+          <li class="step" data-reveal><h3>Дорабатываем</h3><p>Вносим правки, пока всё не будет так, как вам нужно.</p></li>
+          <li class="step" data-reveal><h3>Запускаем</h3><p>Выкладываю сайт или запускаю бота и объясняю, как менять цены и расписание.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="contact" style="padding-top: 0">
+      <div class="container">
+        <div class="contact" data-reveal>
+          <h2>Есть задача? <span>Напишите</span></h2>
+          <p class="contact__lead">Расскажите, чем занимаетесь и что нужно. Отвечу в течение дня.</p>
+          <div class="contact__actions">
+            <a class="btn btn--tg" href="https://t.me/TELEGRAM_USERNAME" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.4 3.6 2.9 10.8c-1.2.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.6zM9.6 14.3l-.4 4 -1.5-4.6L18 7.4z"/></svg>
+              Telegram
+            </a>
+            <a class="btn btn--vk" href="https://vk.com/VK_PAGE" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width: 1.5rem; height: 1.5rem"><path d="M12.8 17.5c-5.5 0-8.7-3.8-8.8-10.1h2.8c.1 4.6 2.1 6.6 3.7 7V7.4h2.6v4c1.6-.2 3.3-2 3.8-4h2.6a7.7 7.7 0 0 1-3.5 5 8 8 0 0 1 4.1 5.1h-2.9a5 5 0 0 0-4.1-3.6v3.6z"/></svg>
+              ВКонтакте
+            </a>
+            <a class="btn btn--line" href="https://github.com/DanekKuznec" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__row">
+      <p>© <span id="year">2026</span> Даниил</p>
+      <p>Сайты и чат-боты для малого бизнеса</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+      const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Header gets a line once the page is scrolled.
+      const header = document.querySelector(".header");
+      const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      // Long screenshots scroll inside the browser frame on hover; distance and speed depend on the image.
+      document.querySelectorAll(".browser__view").forEach((view) => {
+        const img = view.querySelector("img");
+        const measure = () => {
+          const shift = Math.max(0, img.offsetHeight - view.clientHeight);
+          view.style.setProperty("--shift", `-${shift}px`);
+          view.style.setProperty("--scroll-time", `${Math.min(14, Math.max(3, shift / 450))}s`);
+        };
+        if (img.complete) measure(); else img.addEventListener("load", measure);
+        window.addEventListener("resize", measure);
+      });
+
+      // Bot recording plays only while it is on screen.
+      const video = document.getElementById("bot-video");
+
+      if (!("IntersectionObserver" in window)) {
+        document.querySelectorAll("[data-reveal]").forEach((n) => n.classList.add("is-in"));
+        return;
+      }
+      if (!calm) {
+        new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) video.play().catch(() => {});
+          else video.pause();
+        }, { threshold: 0.4 }).observe(video);
+      } else {
+        video.controls = true;
+      }
+
+      const items = document.querySelectorAll("[data-reveal]");
+      items.forEach((node) => {
+        const siblings = [...node.parentElement.children].filter((c) => c.hasAttribute("data-reveal"));
+        if (siblings.length > 1) node.style.setProperty("--i", siblings.indexOf(node));
+      });
+      const io = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
+        }
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.1 });
+      items.forEach((node) => io.observe(node));
+    })();
+  </script>
+</body>
+</html>
